@@ -1,10 +1,10 @@
 const CONFIG = {
     titleWeb: "Website Title",
-    introTitle: 'Rakhiba ji',
-    introDesc: `The earth is so strange
-    Yet somehow you keep taking the wrong path
-    Wandering into my lonely heart
-    Behind the word love is affection`,
+    introTitle: "To the Love of My Life 💘 Rakhiba",
+introDesc: `Every moment with you feels like a dream ✨,
+The world around me fades when I'm with you 🌍💑,
+Your smile brightens my day, your laughter fills my heart 💕,
+In your eyes, I see my forever 🌹.`,
     btnIntro: '^^HiHi^^',
     title: 'Did you fall in love at first sight? 🥰',
     desc: 'Did you fall for me the moment you saw that smile?',
