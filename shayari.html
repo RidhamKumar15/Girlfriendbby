@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Shayari</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            transition: background-color 5s ease;
+            background-color: #f8a5c2; /* Starting with pink background */
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* For wave background effect */
+        @keyframes wave {
+            0% { background-color: #f8a5c2; }
+            50% { background-color: #ff758f; }
+            100% { background-color: #f8a5c2; }
+        }
+
+        /* Applying the wave animation */
+        body {
+            animation: wave 10s infinite;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="titleWeb">Shayari for You</h1>
+    <div class="content"></div>
+    
+    <script>
+        // Array of love-themed Shayari with emojis
+        const shayaris = [
+            "Pyaar ka matlab sirf pyaar hota hai ❤️, aur kuch nahi 😊.",
+            "Meri zindagi ki har khushi tum se hai 🌸.",
+            "Jab se tumse milke jeena seekha hai 💖, tab se yeh dil tumhara ho gaya hai 💘.",
+            "Meri mohabbat ko sirf tum samajh sakte ho 💌.",
+            "Har dil mein ek tum ho 💓, har aankh mein ek sapna tumhara ho 😘.",
+            "Zindagi mein kuch khoya nahi, bas tumse milne ka waqt chhupa diya ⏳.",
+            "Dil ke kone mein tumse juda ek khayal sa hai 💭.",
+            "Mujhe nahi pata tha ki dil lagana bhi kisi kaam ka hota hai 💘.",
+            "Kuch baatein dil mein rakhne se bhi behtar hoti hain 💖.",
+            "Mujhe tumse kuch nahi chahiye, bas tumhara saath chahiye 👫."
+        ];
+
+        // Variable to track the currently playing audio
+        let currentAudio = null;
+
+        // Function to get random Shayari
+        function getRandomShayari() {
+            const randomIndex = Math.floor(Math.random() * shayaris.length);
+            return shayaris[randomIndex];
+        }
+
+        // Function to show random Shayari and change background color
+        function showShayari() {
+            const randomShayari = getRandomShayari();
+
+            Swal.fire({
+                title: "Love Shayari 💖",
+                text: randomShayari,
+                background: "#f8a5c2",  // Always starting with pink background
+                color: '#fff',
+                confirmButtonText: 'Aww, so cute! 💖',
+                confirmButtonColor: '#fe8a71',
+            }).then(() => {
+                showShayari();  // Show new Shayari on click of "Aww, so cute! 💖"
+                loadSound();  // Play the sound after clicking the button
+            });
+
+            // Trigger wave animation effect (background color transition)
+            changeBackgroundColor();
+        }
+
+        // Function to change background color slowly from pink to other shades
+        function changeBackgroundColor() {
+            setInterval(() => {
+                const pinkShades = ["#f8a5c2", "#ff758f", "#ff5c8d", "#f38ea0", "#ff6f91"];
+                const randomShade = pinkShades[Math.floor(Math.random() * pinkShades.length)];
+                document.body.style.backgroundColor = randomShade;
+            }, 3000); // Change background color every 3 seconds
+        }
+
+        // Function to load and play sound
+        function loadSound() {
+            // Stop the previous audio if it's playing
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;  // Reset to start
+            }
+
+            // Play the new sound
+            currentAudio = new Audio('sound/shayri.mp3');  // Ensure this path is correct
+            currentAudio.play();
+        }
+
+        // Run the function when the page loads
+        window.onload = function() {
+            // Show the first Shayari
+            showShayari();
+        };
+    </script>
+</body>
+</html>
